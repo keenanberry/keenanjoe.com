@@ -1,0 +1,221 @@
+@import "tailwindcss";
+
+:root {
+  --background: #FDF6E3;
+  --foreground: #292524;
+  --cream: #FDF6E3;
+  --cream-light: #FFFDF7;
+  --amber: #D97706;
+  --burnt-orange: #C2410C;
+  --olive: #4D7C0F;
+  --charcoal: #292524;
+  --cream-dark: #F5E6C8;
+  --terracotta: #E07B53;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-cream: var(--cream);
+  --color-cream-light: var(--cream-light);
+  --color-cream-dark: var(--cream-dark);
+  --color-amber: var(--amber);
+  --color-burnt-orange: var(--burnt-orange);
+  --color-olive: var(--olive);
+  --color-charcoal: var(--charcoal);
+  --color-terracotta: var(--terracotta);
+  --font-sans: var(--font-source-sans);
+  --font-serif: var(--font-playfair);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+/* Grain texture overlay */
+.grain {
+  position: relative;
+}
+
+.grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.035;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.grain > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Retro decorative gradient with more warmth */
+.retro-gradient {
+  background: 
+    radial-gradient(ellipse at 20% 0%, rgba(217, 119, 6, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 100%, rgba(77, 124, 15, 0.06) 0%, transparent 50%),
+    linear-gradient(
+      180deg,
+      var(--cream) 0%,
+      var(--cream-dark) 50%,
+      var(--cream) 100%
+    );
+}
+
+/* Wavy section divider */
+.wave-divider {
+  position: relative;
+  height: 60px;
+  overflow: hidden;
+}
+
+.wave-divider svg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+}
+
+/* Wavy top border */
+.wavy-top {
+  position: relative;
+}
+
+.wavy-top::before {
+  content: "";
+  position: absolute;
+  top: -20px;
+  left: 0;
+  right: 0;
+  height: 20px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 30' preserveAspectRatio='none'%3E%3Cpath d='M0,15 C150,30 350,0 600,15 C850,30 1050,0 1200,15 L1200,30 L0,30 Z' fill='%23FDF6E3'/%3E%3C/svg%3E") repeat-x;
+  background-size: 1200px 30px;
+}
+
+/* Groovy button styles - override link colors */
+.btn-primary {
+  background-color: var(--amber) !important;
+  color: var(--cream-light) !important;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 0 var(--burnt-orange);
+}
+
+.btn-primary:hover {
+  background-color: var(--burnt-orange) !important;
+  color: var(--cream-light) !important;
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 var(--burnt-orange);
+}
+
+.btn-secondary {
+  background-color: transparent !important;
+  color: var(--amber) !important;
+  border: 2px solid var(--amber);
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background-color: var(--amber) !important;
+  color: var(--cream-light) !important;
+}
+
+/* Subtle retro border styling */
+.retro-border {
+  border: 2px solid var(--amber);
+  border-radius: 0.5rem;
+}
+
+/* Retro card with subtle shadow */
+.retro-card {
+  background: rgba(253, 246, 227, 0.8);
+  border: 1px solid rgba(217, 119, 6, 0.15);
+  border-radius: 1rem;
+  box-shadow: 
+    0 4px 6px -1px rgba(41, 37, 36, 0.05),
+    0 2px 4px -2px rgba(41, 37, 36, 0.05);
+}
+
+/* Link styling - but not for buttons */
+a:not(.btn-primary):not(.btn-secondary):not([class*="rounded-full"]) {
+  color: var(--amber);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:not(.btn-primary):not(.btn-secondary):not([class*="rounded-full"]):hover {
+  color: var(--burnt-orange);
+}
+
+/* Decorative circles */
+.retro-circle {
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--amber) 0%, var(--terracotta) 100%);
+  opacity: 0.1;
+}
+
+/* Prose styling for meditation content */
+.prose {
+  max-width: 65ch;
+  line-height: 1.75;
+}
+
+.prose h1, .prose h2, .prose h3 {
+  font-family: var(--font-serif), Georgia, serif;
+  color: var(--charcoal);
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.prose h1 {
+  font-size: 2.25rem;
+}
+
+.prose h2 {
+  font-size: 1.75rem;
+}
+
+.prose h3 {
+  font-size: 1.25rem;
+}
+
+.prose p {
+  margin-bottom: 1.25rem;
+}
+
+.prose blockquote {
+  border-left: 4px solid var(--amber);
+  padding-left: 1.5rem;
+  font-style: italic;
+  color: #57534e;
+}
+
+/* Groovy animated underline */
+.groovy-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.groovy-underline::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--amber), var(--terracotta), var(--olive), var(--amber));
+  background-size: 200% 100%;
+  border-radius: 2px;
+  animation: groovy-shift 3s ease-in-out infinite;
+}
+
+@keyframes groovy-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
