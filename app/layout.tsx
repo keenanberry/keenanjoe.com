@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Source_Sans_3 } from "next/font/google";
+import { Playfair_Display, Source_Sans_3, Caveat } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import "./globals.css";
@@ -12,6 +12,12 @@ const playfair = Playfair_Display({
 
 const sourceSans = Source_Sans_3({
   variable: "--font-source-sans",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const caveat = Caveat({
+  variable: "--font-caveat",
   subsets: ["latin"],
   display: "swap",
 });
@@ -29,7 +35,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${playfair.variable} ${sourceSans.variable} antialiased min-h-screen flex flex-col`}
+        className={`${playfair.variable} ${sourceSans.variable} ${caveat.variable} antialiased min-h-screen flex flex-col`}
       >
         <Header />
         <main className="flex-1">{children}</main>

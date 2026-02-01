@@ -17,9 +17,14 @@ export default function Header() {
       <nav className="mx-auto flex max-w-4xl items-center justify-between px-6 py-4">
         <Link
           href="/"
-          className="font-serif text-2xl font-semibold text-charcoal hover:text-amber transition-colors"
+          className="group flex items-center gap-2 transition-all hover:scale-105"
         >
-          Keenan Joe
+          <span className="text-2xl text-amber group-hover:text-burnt-orange transition-colors">
+            ॐ
+          </span>
+          <span className="font-[family-name:var(--font-caveat)] text-3xl text-amber group-hover:text-burnt-orange transition-colors">
+            keenanjoe
+          </span>
         </Link>
 
         <ul className="flex items-center gap-8">
