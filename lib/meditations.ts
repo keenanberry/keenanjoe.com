@@ -10,6 +10,7 @@ export interface MeditationMeta {
   date: string;
   excerpt: string;
   type: "text" | "video";
+  tags: string[];
 }
 
 export interface Meditation extends MeditationMeta {
@@ -39,6 +40,7 @@ export async function getAllMeditations(): Promise<MeditationMeta[]> {
       date: data.date || "",
       excerpt: data.excerpt || "",
       type: (data.type as "text" | "video") || "text",
+      tags: Array.isArray(data.tags) ? data.tags : [],
     };
   });
 
@@ -79,6 +81,7 @@ export async function getMeditationBySlug(
     date: data.date || "",
     excerpt: data.excerpt || "",
     type: (data.type as "text" | "video") || "text",
+    tags: Array.isArray(data.tags) ? data.tags : [],
     content,
   };
 }

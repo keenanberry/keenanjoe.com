@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ChevronRight } from "lucide-react";
 import type { MeditationMeta } from "@/lib/meditations";
 
 interface MeditationCardProps {
@@ -31,21 +32,22 @@ export default function MeditationCard({ meditation }: MeditationCardProps) {
           {meditation.excerpt}
         </p>
 
+        {meditation.tags.length > 0 && (
+          <div className="mt-3 flex flex-wrap gap-1.5">
+            {meditation.tags.map((tag) => (
+              <span
+                key={tag}
+                className="rounded-full bg-cream-dark/60 px-2.5 py-0.5 text-xs text-charcoal/50"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
+
         <div className="mt-4 flex items-center text-sm font-medium text-amber group-hover:text-burnt-orange transition-colors">
           Read more
-          <svg
-            className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M9 5l7 7-7 7"
-            />
-          </svg>
+          <ChevronRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
         </div>
       </article>
     </Link>

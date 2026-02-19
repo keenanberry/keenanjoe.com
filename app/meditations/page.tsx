@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getAllMeditations } from "@/lib/meditations";
-import MeditationCard from "@/components/MeditationCard";
+import MeditationsFilter from "@/components/MeditationsFilter";
 
 export const metadata: Metadata = {
   title: "Meditations | Keenan Joe",
@@ -44,13 +44,9 @@ export default async function MeditationsPage() {
           </p>
         </div>
 
-        {/* Meditations Grid */}
+        {/* Search, Filter, and Meditations Grid */}
         {meditations.length > 0 ? (
-          <div className="grid gap-6 md:grid-cols-2">
-            {meditations.map((meditation) => (
-              <MeditationCard key={meditation.slug} meditation={meditation} />
-            ))}
-          </div>
+          <MeditationsFilter meditations={meditations} />
         ) : (
           <div className="retro-card p-12 text-center">
             <h2 className="font-serif text-2xl font-semibold text-charcoal mb-4">
